@@ -1,0 +1,28 @@
+.sideBar{
+    background-color: #cccccc;
+    border-right: 4px solid #282c34;
+    flex: 1;
+    height: 100%;
+    padding: 20px 8px;
+}
+.singlePart{
+    text-align: left;
+    display: block;
+    padding: 4px 10px;
+    font-size: 20px;
+
+}
+.singlePart:active{
+    background-color: rgba(110,255,238,0.78);
+    border-left: 2px solid;
+}
+.sideBar-svg-box{
+    vertical-align: middle;
+    padding: 16px 10px;
+    scale: 1.5;
+}
+.nav-item{
+    display: block;
+    text-decoration: none;
+    color: black
+}
