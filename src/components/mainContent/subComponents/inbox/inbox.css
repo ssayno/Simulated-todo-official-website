@@ -1,0 +1,11 @@
+.inbox-header{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: rgba(145,180,255,0.91);
+}
+.inbox-header > span{
+    flex: border-box;
+    margin-left: 6px;
+    margin-right: 10px;
+}

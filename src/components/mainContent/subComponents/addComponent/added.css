@@ -1,0 +1,61 @@
+.add{
+    border-radius: 4px;
+    box-shadow: 0 -5px 5px 4px rgba(239,253,246,0.97);
+}
+.add > .first-add{
+    padding: 10px 15px;
+    border-bottom: 1px solid #cccccc;
+    color: rgba(62,106,253,0.97);
+}
+.second-add{
+    padding: 10px 15px;
+    background-color: rgba(237,253,242,0.97);
+    overflow: hidden;
+}
+#task{
+    box-sizing: border-box;
+    vertical-align: middle;
+    width: calc(100% - 1.5em);
+    padding: 0 10px;
+    height: 40px;
+    outline: none;
+    border: 0 none;
+    color: black;
+    font-size: 18px;
+}
+#task::-webkit-input-placeholder {
+    /* WebKit/Blink */
+    color: blue;
+}
+#task:focus::-webkit-input-placeholder{
+    color: black;
+}
+#circle{
+    box-sizing: border-box;
+    display: inline-block;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    border: 2px solid currentColor;
+    vertical-align: middle;
+}
+.second-add > span{
+    margin: 0 10px;
+    color: black;
+    vertical-align: middle;
+}
+.second-add > span > svg{
+    vertical-align: middle;
+    scale: 1.4;
+}
+#add-task{
+    vertical-align: middle;
+    color: blue;
+    float: right;
+}
+#add-task:disabled{
+    color: #999999;
+}
+#calendar{
+    position: relative;
+}

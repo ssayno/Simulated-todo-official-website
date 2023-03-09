@@ -1,36 +1,47 @@
 import './sidebar.css'
-import {BsPerson, BsStar, BsSun} from "react-icons/bs";
 import {Link} from 'react-router-dom'
-import {RxCalendar} from "react-icons/rx";
-import {VscHome, VscThreeBars} from "react-icons/vsc";
+import {VscHome, VscThreeBars} from "react-icons/vsc"
+import React, {useState} from "react";
 
-export const SideBar = () => {
-    const sideBarContent = [
-        "我的一天",
-        "重要",
-        "计划内",
-        "已分配给我",
-        "任务"
-    ]
+export const SideBar = ({data}) => {
+    const [state, setState] = useState(0);
+    const updateSelected = (evt, index) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+        setState(index)
+    }
+
+    // useEffect(() => {
+    //     sideBar-svg-box("state is", state);
+    // }, [state])
     return (
         <div className="sideBar">
             <p className="nav-item"><VscThreeBars className="sideBar-svg-box"/></p>
-            <Link className="nav-item" to="/task/myday/" ><BsSun className="sideBar-svg-box"/><span className="sideBar-svg-box">我的一天</span></Link>
-            <Link className="nav-item" to="/task/important/"><BsStar className="sideBar-svg-box"/><span className="sideBar-svg-box">重要</span></Link>
-            <Link className="nav-item" to="/task/planned/"><RxCalendar className="sideBar-svg-box"/><span className="sideBar-svg-box">计划内</span></Link>
-            <Link className="nav-item" to="/task/assigned_to_me/"><BsPerson className="sideBar-svg-box"/><span className="sideBar-svg-box">已分配给我</span></Link>
-            <Link className="nav-item" to="/task/inbox/"><VscHome className="sideBar-svg-box"/><span className="sideBar-svg-box">任务</span></Link>
+            {data.map((n, i) => (
+                <SinglePart key={i}
+                            icon={n[0]}
+                            partName={n[1]}
+                            location={n[2]}
+                            count={n[3].length}
+                            className_={`${state === i ? "selected-part" : ""}`}
+                            onHandleClick={(evt) => (updateSelected(evt, i))}
+                />
+            ))}
             <hr/>
         </div>
     )
 }
 
-const SinglePart = ({name=""}) => {
-    // const addActivatedClass = (evt) => {
-    //     const target = evt.target;
-    //     target.setAttribute('class', 'activatedSinglePart');
-    // }
-    return(
-        <a className="singlePart"><span>{name}</span></a>
+const SinglePart = ({icon, partName, location, className_, count, onHandleClick
+}) => {
+    return (
+        <div onClick={onHandleClick}  className={`${className_} singlePart`.trim()}>
+            <Link to={location} className="nav-item">
+                {icon}
+            <span className="sideBar-svg-box">
+            {partName}
+        </span></Link>
+            {count > 0 ? <span className="part-count">{count}</span>: null}
+        </div>
     )
 }

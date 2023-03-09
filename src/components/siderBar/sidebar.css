@@ -1,15 +1,17 @@
 .sideBar{
-    background-color: #cccccc;
+    background-color: #fffbf0;
     border-right: 4px solid #282c34;
     flex: 1;
     height: 100%;
-    padding: 20px 8px;
+    padding: 20px 0;
 }
 .singlePart{
     text-align: left;
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 4px 10px;
     font-size: 20px;
+    border-left: 4px solid transparent;
 
 }
 .singlePart:active{
@@ -18,11 +20,21 @@
 }
 .sideBar-svg-box{
     vertical-align: middle;
+    flex: border-box;
     padding: 16px 10px;
     scale: 1.5;
 }
 .nav-item{
-    display: block;
+    display: inline-block;
     text-decoration: none;
+    flex: 1;
     color: black
+}
+.selected-part{
+    background-color: rgba(52,191,101,0.28);
+    border-left: 4px solid blue;
+    font-weight: bolder;
+}
+.part-count{
+    flex: border-box;
 }

@@ -1,0 +1,24 @@
+.singleTask{
+    border-bottom: 2px solid rgba(90,252,255,0.91);
+    font-size: 20px;
+    margin: 10px 0;
+    display: flex;
+}
+.singleTask > input{
+    flex: border-box;
+}
+.singleTask > span.up{
+    flex: auto;
+}
+.singleTask > span.down{
+    flex: 1;
+}
+.singleTask > span.d-star{
+    flex: border-box;
+    vertical-align: middle;
+    scale: 1.2;
+}
+/*.singleTask > span.d-star > svg{*/
+/*    vertical-align: middle;*/
+/*    scale: 2;*/
+/*}*/

@@ -7,30 +7,3 @@
     /*border: 2px solid red;*/
     margin: 15px;
 }
-.add{
-    height: 100%;
-    border-radius: 4px;
-    box-shadow: 0 -5px 5px 4px rgba(239,253,246,0.97);
-}
-.add > .first-add{
-    padding: 10px 15px;
-    border-bottom: 1px solid #cccccc;
-    color: rgba(62,106,253,0.97);
-}
-.add > .second-add{
-    padding: 10px 15px;
-    background-color: rgba(237,253,242,0.97);
-}
-#task{
-    vertical-align: middle;
-}
-#task::before{
-    display: inline-block;
-    content: "";
-    border-radius: 50%;
-    width: 1em;
-    height: 1em;
-    border: 1px solid currentColor;
-    margin: 0 4px;
-    vertical-align: top;
-}

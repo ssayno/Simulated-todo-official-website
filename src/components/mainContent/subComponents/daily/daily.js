@@ -1,4 +1,15 @@
-export const Daily = () => {
+import {Added} from "../addComponent/added";
+import {TaskComponent} from "../taskComponent/taskComponent";
+import {BiDotsHorizontal} from "react-icons/bi";
+import './daily.css'
+
+export const Daily = ({data, upHandleAdd, icon, headerText}) => {
+    const dailyHandleAdd = (text) => {
+        upHandleAdd({
+            text: text,
+            taskType: "daily"
+        })
+    }
     const getCurrentTime = () => {
         const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
         const days = ['日', '一', '二', '三', '四', '五', '六'];
@@ -9,18 +20,22 @@ export const Daily = () => {
         return `${month} ${date} ${day}`
     }
     return (
-        <div>
-            <span>{getCurrentTime()}</span>
-            <div className="add">
-                <div className="first-add">
-                    <span id="task">添加任务</span>
-                </div>
-                <div className="second-add">
-                    <span>a</span>
-                    <span>b</span>
-                    <span>c</span>
-                </div>
+        <>
+            <div className={"daily-header"}>
+                {icon}<span>{headerText}</span><BiDotsHorizontal />
             </div>
-        </div>
+            <div>
+                <span id={"daily-time"}>{getCurrentTime()}</span>
+            </div>
+            <Added onHandleAdd={dailyHandleAdd}/>
+            <hr/>
+            {data.map((node, index) => (
+                <TaskComponent
+                    key={`daily-task-${index}`}
+                    text={node}
+                    status={true}
+                />
+            ))}
+        </>
     )
 }

@@ -1,0 +1,12 @@
+.plan-header{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: rgba(89,137,255,0.91);
+    margin-bottom: 20px;
+}
+.plan-header > span{
+    flex: border-box;
+    margin-left: 6px;
+    margin-right: 10px;
+}
