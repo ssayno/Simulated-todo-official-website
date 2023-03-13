@@ -3,13 +3,21 @@ import {TaskComponent} from "../taskComponent/taskComponent";
 import {MdOutlineCalendarMonth} from "react-icons/md";
 import {BiDotsHorizontal} from "react-icons/bi";
 import './plan.css'
+import {DoneTaskComponent} from "../doneTaskComponent/doneTaskComponent";
 
-export const Planned = ({data, upHandleAdd}) => {
+export const Planned = ({data, upHandleAdd, upHandleTodoOrDone}) => {
+    const todoData = data['todo'];
+    const doneData = data['done']
     const planHandleAdd = (text) => {
         upHandleAdd({
             text: text,
             taskType: "plan"
         })
+    }
+    const toggleTodoOrDone = (para) => {
+        upHandleTodoOrDone(
+            {...para, taskType: "plan"}
+        )
     }
     return(
         <>
@@ -20,11 +28,21 @@ export const Planned = ({data, upHandleAdd}) => {
             </div>
             <Added onHandleAdd={planHandleAdd}/>
             <hr/>
-            {data.map((node, index) => (
+            {todoData.map((node, index) => (
                 <TaskComponent
                     key={`daily-task-${index}`}
                     text={node}
                     status={true}
+                    upToggleTodoToDone={toggleTodoOrDone}
+                />
+            ))}
+            <hr/>
+            {doneData.map((node, index) => (
+                <DoneTaskComponent
+                    key={`daily-task-${index}`}
+                    text={node}
+                    status={true}
+                    upToggleDoneToTodo={toggleTodoOrDone}
                 />
             ))}
         </>

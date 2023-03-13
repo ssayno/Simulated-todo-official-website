@@ -1,6 +1,5 @@
 #content-area {
     flex: 4;
-    overflow: hidden;
     height: 100%;
     background-color: rgba(243,253,248,0.65);
     padding: 5px 10px;

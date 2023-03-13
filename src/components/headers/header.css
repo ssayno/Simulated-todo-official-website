@@ -2,35 +2,36 @@
     display: flex;
     align-items: center;
     background-color: rgba(57,43,255,0.78);
-    padding: 6px 10px;
-    overflow: hidden;
+    /*padding: 6px 10px;*/
     text-align: center;
     font-size: 24px;
     height: 1.5em;
-    color: white;
+    color: black;
 }
-#header div{
+#header > div{
     display: inline-block;
     position: relative;
 }
 #header > .searchBar{
     overflow: hidden;
     flex: 6;
-    height: 100%;
     text-align: center;
 }
 #header > .left-container{
     height: 100%;
     flex: 2;
-    float: left;
     text-align: left;
     align-items: center;
 }
 #header > .right-container{
     height: 100%;
     flex: 2;
-    float: right;
     text-align: right;
+}
+.right-container > span{
+    position: relative;
+    display: inline-block;
+    height: 100%;
 }
 #searchBox{
     width: 80%;
@@ -49,6 +50,27 @@
     color: black;
 }
 .svg-box{
-    vertical-align: middle;
+    height: 100%;
     padding: 0 5px;
+    vertical-align: middle;
+}
+.person-info{
+    box-sizing: border-box;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    right: 0;
+    bottom: -200px;
+    border-radius: 2px;
+    border: 2px solid rgba(255,247,150,0.99);
+    background-color: white;
+    border-top-color: transparent;
+    border-right-color: transparent;
+}
+.person-info > .person-header{
+    font-weight: bolder;
+    text-align: center;
+}
+.person-info > .person-content{
+    text-align: center;
 }

@@ -1,23 +1,19 @@
-import './taskComponent.css'
+import {BsFillCheckCircleFill} from "react-icons/bs";
 import {AiFillStar, AiOutlineStar} from "react-icons/ai";
-import {useState} from "react";
-import {BsCheckCircle, BsCircle} from "react-icons/bs";
-export const TaskComponent = ({text, status, upToggleTodoToDone}) => {
-    const [isHover, setIsHover] = useState(false);
+
+export const DoneTaskComponent = ({text, status, upToggleDoneToTodo}) => {
     const toggleTodoOrDone = () => {
-        upToggleTodoToDone({
+        upToggleDoneToTodo({
             content: text,
-            type: true
+            type: false
         })
     }
     return(
         <div className="singleTask">
             <span className="add-circle"
-                  onMouseEnter={() => setIsHover(true)}
-                  onMouseLeave={() => setIsHover(false)}
                   onClick={toggleTodoOrDone}
             >
-                {isHover ? <BsCheckCircle /> : <BsCircle />}
+                <BsFillCheckCircleFill />
             </span>
             <span className="up">{text}</span>
             <span className="down">test</span>

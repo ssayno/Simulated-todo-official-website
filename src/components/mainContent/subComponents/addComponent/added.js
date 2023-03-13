@@ -1,15 +1,20 @@
 import './added.css'
-import {MdOutlineCalendarMonth} from "react-icons/md";
-import {BiBell} from "react-icons/bi";
-import {TbRefresh} from "react-icons/tb";
 import {useState} from "react";
-import ReactDOM from "react-dom/client";
+import {BiBell, BiPlus} from "react-icons/bi";
+import {TbCircle, TbRefresh} from "react-icons/tb";
 import {createPortal} from "react-dom";
+import {MdOutlineCalendarMonth} from "react-icons/md";
+import {PopCalendar} from "../../../portals/calendar/calendar";
+import {PopClock} from "../../../portals/Clock/clock";
+import {PopRefresh} from "../../../portals/refresh/refresh";
 
 export const Added = ({onHandleAdd}) => {
     const [checked, setChecked] = useState(true);
     const [text, setText] = useState("");
     const [datePortal, setDatePortal] = useState(false);
+    const [clockPortal, setClockPortal] = useState(false);
+    const [refreshPortal, setRefreshPortal] = useState(false);
+    const [focus, setFocus] = useState(false);
     const handleInput = (evt) => {
         const target = evt.target;
         const value = target.value;
@@ -29,18 +34,55 @@ export const Added = ({onHandleAdd}) => {
         setDatePortal(prevState => (
             !prevState
         ))
+        setClockPortal(false)
+        setRefreshPortal(false)
+    }
+    const toggleClock = () => {
+        setClockPortal(prevState => (
+            !prevState
+        ))
+        setDatePortal(false)
+        setRefreshPortal(false)
+    }
+    const toggleRefresh = () => {
+        setRefreshPortal(prevState => (
+            !prevState
+        ))
+        setDatePortal(false)
+        setClockPortal(false)
+    }
+    const keyResponse = (evt) => {
+        if(evt.keyCode === 13 && !checked){
+            handleAdd();
+        }
     }
     return (
         <>
             <div className="add">
                 <div className="first-add">
-                    <span id="circle"></span>
-                    <input type="text" id="task" placeholder="添加任务" value={text} onChange={handleInput}/>
+                    <span
+                        id="circle-or-plus"
+                        onMouseEnter={() => {setFocus(true)}}
+                        onMouseLeave={() => {setFocus(false)}}
+                    >
+                        {focus ? <BiPlus />: <TbCircle />}
+                    </span>
+                    <input type="text" id="task"
+                           placeholder="添加任务" value={text}
+                           onChange={handleInput}
+                           onKeyDown={keyResponse}
+                    />
                 </div>
                 <div className="second-add">
-                    <span id="calendar" onClick={toggleCalendar}><MdOutlineCalendarMonth/></span>
-                    <span><BiBell/></span>
-                    <span><TbRefresh/></span>
+                    <span id="calendar"
+                          onClick={toggleCalendar}
+                    ><MdOutlineCalendarMonth/></span>
+                    <span id="clock"
+                          onClick={toggleClock}
+                    ><BiBell/></span>
+                    <span id="refresh"
+                          onClick={toggleRefresh}
+                    ><TbRefresh/></span>
                     <input type="button" id="add-task" value="添加"
                            disabled={checked}
                            onClick={handleAdd}
@@ -50,14 +92,18 @@ export const Added = ({onHandleAdd}) => {
             {/* portal */}
             {datePortal &&
                 createPortal(
-                    <div style={{position: "absolute", top: "0", left: "0"}}>
-                        <ul>
-                            <li>Option 1</li>
-                            <li>Option 2</li>
-                            <li>Option 3</li>
-                        </ul>
-                    </div>,
+                    <PopCalendar />,
                     document.getElementById('calendar')
+                )}
+            {clockPortal &&
+                createPortal(
+                    <PopClock />,
+                    document.getElementById('clock')
+                )}
+            {refreshPortal &&
+                createPortal(
+                    <PopRefresh />,
+                    document.getElementById('refresh')
                 )}
         </>
     )

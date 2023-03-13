@@ -3,13 +3,21 @@ import {TaskComponent} from "../taskComponent/taskComponent";
 import {AiOutlineStar} from "react-icons/ai";
 import {BiDotsHorizontal} from "react-icons/bi";
 import './important.css'
+import {DoneTaskComponent} from "../doneTaskComponent/doneTaskComponent";
 
-export const Important = ({data, upHandleAdd}) => {
+export const Important = ({data, upHandleAdd, upHandleTodoOrDone}) => {
+    const todoData = data['todo'];
+    const doneData = data['done']
     const significantHandleAdd = (text) => {
         upHandleAdd({
             text: text,
             taskType: "significant"
         })
+    }
+    const toggleTodoOrDone = (para) => {
+        upHandleTodoOrDone(
+            {...para, taskType: "significant"}
+        )
     }
     return(
         <>
@@ -20,11 +28,21 @@ export const Important = ({data, upHandleAdd}) => {
             </div>
             <Added onHandleAdd={significantHandleAdd}/>
             <hr/>
-            {data.map((node, index) => (
+            {todoData.map((node, index) => (
                 <TaskComponent
                     key={`daily-task-${index}`}
                     text={node}
                     status={false}
+                    upToggleTodoToDone={toggleTodoOrDone}
+                />
+            ))}
+            <hr/>
+            {doneData.map((node, index) => (
+                <DoneTaskComponent
+                    key={`daily-task-${index}`}
+                    text={node}
+                    status={false}
+                    upToggleDoneToTodo={toggleTodoOrDone}
                 />
             ))}
         </>

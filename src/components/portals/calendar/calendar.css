@@ -1,0 +1,21 @@
+.portal{
+    position: absolute;
+    width: 160px;
+    margin: 10px;
+    padding: 10px;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    background-color: #F7F2F1;
+    transition: 1s;
+}
+.portal > .portal-header{
+    text-align: center;
+    font-weight: bolder;
+}
+.portal > .portal-content{
+}
+.portal > .portal-content > div{
+    padding: 3px;
+    display: grid;
+    grid-template-columns: 20px auto ;
+}
