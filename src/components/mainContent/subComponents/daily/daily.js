@@ -4,8 +4,10 @@ import {BiDotsHorizontal} from "react-icons/bi";
 import './daily.css'
 import {DoneTaskComponent} from "../doneTaskComponent/doneTaskComponent";
 
-export const Daily = ({data, upHandleAdd, icon, headerText, upHandleTodoOrDone}) => {
-    console.log("daily data", data)
+export const Daily = ({data, upHandleAdd, icon, headerText,
+                          upHandleTodoOrDone, upMainTagToImportant
+}) => {
+    // console.log("daily data", data)
     const todoData = data['todo'];
     const doneData = data['done']
     const dailyHandleAdd = (text) => {
@@ -18,6 +20,9 @@ export const Daily = ({data, upHandleAdd, icon, headerText, upHandleTodoOrDone})
         upHandleTodoOrDone(
             {...para, taskType: "daily"}
         )
+    }
+    const tagToImportant = (para) => {
+        upMainTagToImportant(para)
     }
     const getCurrentTime = () => {
         const months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -44,17 +49,15 @@ export const Daily = ({data, upHandleAdd, icon, headerText, upHandleTodoOrDone})
                     text={node}
                     status={true}
                     upToggleTodoToDone={toggleTodoOrDone}
+                    upTagToImportant={tagToImportant}
                 />
             ))}
             <hr/>
-            {doneData.map((node, index) => (
-                <DoneTaskComponent
-                    key={`daily-task-${index}`}
-                    text={node}
-                    status={true}
-                    upToggleDoneToTodo={toggleTodoOrDone}
-                />
-            ))}
+            <DoneTaskComponent
+                data={doneData}
+                onToggleTodoOrDone={toggleTodoOrDone}
+                type="daily"
+            />
         </>
     )
 }

@@ -37,14 +37,11 @@ export const Important = ({data, upHandleAdd, upHandleTodoOrDone}) => {
                 />
             ))}
             <hr/>
-            {doneData.map((node, index) => (
-                <DoneTaskComponent
-                    key={`daily-task-${index}`}
-                    text={node}
-                    status={false}
-                    upToggleDoneToTodo={toggleTodoOrDone}
-                />
-            ))}
+            <DoneTaskComponent
+                data={doneData}
+                onToggleTodoOrDone={toggleTodoOrDone}
+                type={"significant"}
+            />
         </>
     )
 }

@@ -51,6 +51,7 @@ export const Login = ({handleLogin}) => {
                                id="account"
                                value={account}
                                name={"account"}
+                               autoComplete={""}
                                onChange={handleChangeAccount}
                         />
                         <span className={"error-info"}>{accountError}</span>
@@ -62,6 +63,7 @@ export const Login = ({handleLogin}) => {
                                id="password"
                                name={"password"}
                                value={passwd}
+                               autoComplete="off"
                                onChange={handleChangePasswd}
                         />
                         <span className={"error-info"}>{passwdError}</span>

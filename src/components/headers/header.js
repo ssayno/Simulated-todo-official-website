@@ -4,50 +4,64 @@ import {MdOutlineQuestionMark} from "react-icons/md";
 import {IoMdPaperPlane} from "react-icons/io";
 import {RxPerson} from "react-icons/rx";
 import {TbGridDots} from "react-icons/tb";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {createPortal} from "react-dom";
+import {SettingSideBar} from "../portals/settings/settings";
+import {HelpSideBar} from "../portals/help/help";
+import {FuncSideBar} from "../portals/func/func";
 
 export const Header = () => {
-    const [setting, setSetting] = useState(false);
-    const [help, setHelp] = useState(false);
-    const [func, setFunc] = useState(false);
-    const [person, setPerson] = useState(false);
-    const handleSettings = () => {
-        setSetting(prevState => !prevState)
+    const [[setting, help, func, person], setPopBarArray] = useState([
+        false, false, false, false
+    ])
+    const handleSideBar = (index_) => {
+        setPopBarArray(prevState => prevState.map((n, i) => i===index_ ? !n: false));
     }
-    const handleHelp = () => {
-        setHelp(prevState => !prevState)
-    }
-    const handleFunc = () => {
-        setFunc(prevState => !prevState)
-    }
-    const handlePerson = () => {
-        setPerson(prevState => !prevState)
+    const closeSideBar = (index_) => {
+        setPopBarArray(prevState => prevState.map((n, i) => i===index_ ? false: false));
     }
     return(
         <div id="header">
             <div className="left-container">
                 <TbGridDots className="svg-box"/>
+                <span style={{verticalAlign: "middle"}}>Todo</span>
             </div>
             <div className="searchBar">
                 <i><AiOutlineSearch className="svg-box searchIcon"/></i>
                 <input type="search" id="searchBox"/>
             </div>
             <div className="right-container">
-                <span id={"setting"} onClick={handleSettings}>
+                <span id={"setting"} onClick={() => handleSideBar(0)}>
                     <AiFillSetting className="svg-box" />
                 </span>
-                <span id={"help"} onClick={handleHelp}>
+                <span id={"help"} onClick={() => handleSideBar(1)}>
                     <MdOutlineQuestionMark className="svg-box" />
                 </span>
-                <span id={"func"} onClick={handleFunc}>
+                <span id={"func"} onClick={() => handleSideBar(2)}>
                     <IoMdPaperPlane className="svg-box" />
                 </span>
-                <span id={"person"} onClick={handlePerson}>
+                <span id={"person"} onClick={() => handleSideBar(3)}>
                     <RxPerson className="svg-box" />
                 </span>
             </div>
-
+            {
+                setting && createPortal(
+                    <SettingSideBar onHandleClose={() => {closeSideBar(0)}} />
+                ,document.getElementById('setting')
+                )
+            }
+            {
+                help && createPortal(
+                    <HelpSideBar />
+                    ,document.getElementById('help')
+                )
+            }
+            {
+                func && createPortal(
+                    <FuncSideBar />
+                    ,document.getElementById('func')
+                )
+            }
             {
                 person && createPortal(
                     <div className={"person-info"}>

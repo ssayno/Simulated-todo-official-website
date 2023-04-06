@@ -36,14 +36,11 @@ export const Inbox = ({data, upHandleAdd, upHandleTodoOrDone}) => {
                 />
             ))}
             <hr/>
-            {doneData.map((node, index) => (
-                <DoneTaskComponent
-                    key={`daily-task-${index}`}
-                    text={node}
-                    status={true}
-                    upToggleDoneToTodo={toggleTodoOrDone}
-                />
-            ))}
+            <DoneTaskComponent
+                data={doneData}
+                onToggleTodoOrDone={toggleTodoOrDone}
+                type="inbox"
+            />
         </>
     )
 }

@@ -1,0 +1,21 @@
+.done-header{
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+}
+.done-header > span{
+    display: block;
+}
+.done-header > .done-header-name{
+    margin-right: 10px;
+}
+.done-header > .done-down-arrow {
+    align-items: center;
+    margin-right: 10px;
+    transition: 0.4s;
+}
+.done-header > .done-length{
+    color: #999999;
+}
+
+

@@ -6,7 +6,7 @@ import {Assign} from "./subComponents/assign/assign";
 import {Inbox} from "./subComponents/inbox/inbox";
 import {Daily} from "./subComponents/daily/daily";
 
-export const MainContainer = ({data, upHandleAdd, upHandleTodoOrDone}) => {
+export const MainContainer = ({data, upHandleAdd, upHandleTodoOrDone, upHandleTag}) => {
     console.log('maincontainer data', data)
     const mainHandleAdd = (downedData) => {
         upHandleAdd(downedData);
@@ -15,6 +15,9 @@ export const MainContainer = ({data, upHandleAdd, upHandleTodoOrDone}) => {
         console.log(para)
         upHandleTodoOrDone(para)
     }
+    const mainTagToImportant = (para) => {
+        upHandleTag(para)
+    }
     return (
         <>
             <div id="content-area">
@@ -22,7 +25,9 @@ export const MainContainer = ({data, upHandleAdd, upHandleTodoOrDone}) => {
                     <Route exact path="/task/myday/"
                            element={
                                <Daily data={data[0][3]} upHandleAdd={mainHandleAdd} headerText={data[0][1]}
-                                      icon={data[0][0]} upHandleTodoOrDone={mainHandleTodoOrDone} />
+                                      icon={data[0][0]} upHandleTodoOrDone={mainHandleTodoOrDone}
+                                      upMainTagToImportant={mainTagToImportant}
+                               />
                            }
 
                     />
